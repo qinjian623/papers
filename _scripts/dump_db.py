@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import timedelta, date
 from typing import List, Iterable, Type
 
 from pydantic import BaseModel
@@ -87,10 +88,13 @@ layout: post
 if not os.path.exists("_posts"):
     os.mkdir("_posts")
 
+base_date = date(1900, 1, 1)
+
 for idx, paper in enumerate(cache.all()):
     if paper.is_interesting and paper.is_interesting_2nd_pass['is_autonomous_driving_related']:
         # print(paper.review)
-        idx_str = f'{idx + 10101:08d}'
+        # idx_str = f'{idx + 10101:08d}'
+        post_date = base_date + timedelta(days=idx)
         if paper.review is None:
             continue
         review = json.loads(upwrap_md_json(paper.review))
@@ -106,8 +110,7 @@ for idx, paper in enumerate(cache.all()):
         text += f"## Subfields\n {review['subfield']}\n"
         text += f"## Reason for Interest\n\n{review['reason']}\n"
         text += f"```\nAbstract\n{"\n".join(paper.abstract.strip().split("\n")[1:])}\n ```\n"
-
-        fn = f"_posts/{idx_str[:4]}-{idx_str[4:4 + 2]}-{idx_str[-2:]}-[{review['score']}]{paper.title.replace(' ', '_')}.md"
+        fn = f"_posts/{post_date.strftime('%Y-%m-%d')}-[{review['score']}]{paper.title.replace(' ', '_')}.md"
 
         with open(fn, "w", encoding="utf-8") as f:
             f.write(text)
