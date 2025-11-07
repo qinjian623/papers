@@ -92,7 +92,6 @@ for idx, paper in enumerate(cache.all()):
         front_matter = textwrap.dedent(f"""---
 layout: default
 title: "{paper.title}"
-date: false
 ---
 """)
         post_date = base_date + timedelta(days=idx)
