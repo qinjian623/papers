@@ -93,6 +93,12 @@ for idx, paper in enumerate(cache.all()):
     if paper.is_interesting and paper.is_interesting_2nd_pass['is_autonomous_driving_related']:
         # print(paper.review)
         # idx_str = f'{idx + 10101:08d}'
+        front_matter = f"""---
+        layout: default
+        title: {paper.title}
+        ---
+        
+        """
         post_date = base_date + timedelta(days=idx)
         if paper.review is None:
             continue
