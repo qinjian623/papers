@@ -79,7 +79,7 @@ cache = TinyDBCache(db, model=ArxivPaper, id_field="abs_url")
 
 
 front_matter = """---
-layout: post
+layout: default
 ---
 
 """
