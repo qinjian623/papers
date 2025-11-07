@@ -87,17 +87,15 @@ base_date = date(1900, 1, 1)
 
 for idx, paper in enumerate(cache.all()):
     if paper.is_interesting and paper.is_interesting_2nd_pass['is_autonomous_driving_related']:
-        # print(paper.review)
-        # idx_str = f'{idx + 10101:08d}'
-        front_matter = textwrap.dedent(f"""---
-layout: default
-title: "{paper.title}"
----
-""")
         post_date = base_date + timedelta(days=idx)
         if paper.review is None:
             continue
         review = json.loads(upwrap_md_json(paper.review))
+        front_matter = textwrap.dedent(f"""---
+layout: default
+title: "[{review['score']}]{paper.title}"
+---
+""")
         text = f"{front_matter}\n# [{review['score']}] {paper.title}\n\n"
         authors = f"- Authors: {', '.join(paper.authors)}\n"
         if len(authors) > 100:
