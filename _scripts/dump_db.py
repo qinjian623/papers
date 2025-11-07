@@ -90,7 +90,7 @@ if not os.path.exists("_posts"):
 for idx, paper in enumerate(cache.all()):
     if paper.is_interesting and paper.is_interesting_2nd_pass['is_autonomous_driving_related']:
         # print(paper.review)
-        idx_str = f'{idx:08d}'
+        idx_str = f'{idx + 10101:08d}'
         if paper.review is None:
             continue
         review = json.loads(upwrap_md_json(paper.review))
