@@ -78,11 +78,6 @@ db = "./arxiv_cache.db"
 cache = TinyDBCache(db, model=ArxivPaper, id_field="abs_url")
 
 
-front_matter = """---
-layout: default
----
-
-"""
 
 if not os.path.exists("_posts"):
     os.mkdir("_posts")
@@ -97,7 +92,6 @@ for idx, paper in enumerate(cache.all()):
         layout: default
         title: {paper.title}
         ---
-        
         """
         post_date = base_date + timedelta(days=idx)
         if paper.review is None:
