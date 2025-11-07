@@ -80,6 +80,8 @@ cache = TinyDBCache(db, model=ArxivPaper, id_field="abs_url")
 front_matter = """---
 layout: post
 ---
+
+
 """
 
 if not os.path.exists("_posts"):
