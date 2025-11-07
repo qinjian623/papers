@@ -105,7 +105,7 @@ for idx, paper in enumerate(cache.all()):
         text += f"## Reason for Interest\n\n{review['reason']}\n"
         text += f"```\nAbstract\n{"\n".join(paper.abstract.strip().split("\n")[1:])}\n ```\n"
 
-        fn = f"_posts/{idx_str[:4]}_{idx_str[4:4 + 2]}_{idx_str[-2:]}_[{review['score']}]{paper.title}.md"
+        fn = f"_posts/{idx_str[:4]}_{idx_str[4:4 + 2]}_{idx_str[-2:]}_[{review['score']}]{paper.title.replace(' ', '_')}.md"
 
         with open(fn, "w", encoding="utf-8") as f:
             f.write(text)
