@@ -82,7 +82,6 @@ front_matter = """---
 layout: post
 ---
 
-
 """
 
 if not os.path.exists("_posts"):
@@ -110,7 +109,7 @@ for idx, paper in enumerate(cache.all()):
         text += f"## Subfields\n {review['subfield']}\n"
         text += f"## Reason for Interest\n\n{review['reason']}\n"
         text += f"```\nAbstract\n{"\n".join(paper.abstract.strip().split("\n")[1:])}\n ```\n"
-        fn = f"_posts/{post_date.strftime('%Y-%m-%d')}-[{review['score']}]{paper.title.replace(' ', '_')}.md"
+        fn = f"_posts/{post_date.strftime('%Y-%m-%d')}-[{review['score']}]{paper.title}.md"
 
         with open(fn, "w", encoding="utf-8") as f:
             f.write(text)
