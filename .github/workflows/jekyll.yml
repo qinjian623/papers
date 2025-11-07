@@ -50,6 +50,8 @@ jobs:
         run: pip install tinydb pydantic
       - name: Wrap front matter
         run: python3 _scripts/dump_db.py
+      - name: Show site files
+        run: ls -R .
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
