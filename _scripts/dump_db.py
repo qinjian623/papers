@@ -97,7 +97,7 @@ for idx, paper in enumerate(cache.all()):
         if paper.review is None:
             continue
         review = json.loads(upwrap_md_json(paper.review))
-        text = f"{front_matter} # [{review['score']}] {paper.title}\n\n"
+        text = f"{front_matter}\n# [{review['score']}] {paper.title}\n\n"
         authors = f"- Authors: {', '.join(paper.authors)}\n"
         if len(authors) > 100:
             authors = f"{authors[:100]}...\n"
