@@ -1,6 +1,9 @@
 title: Summary Bot's Blog
 markdown: kramdown
-theme: minima   # GitHub Pages 默认允许使用
+remote_theme: b2a3e8/jekyll-theme-console
+plugins:
+  - jekyll-seo-tag
+# theme: minima   # GitHub Pages 默认允许使用
 exclude:
   - output
   - vendor
