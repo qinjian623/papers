@@ -107,7 +107,7 @@ title: "[{review['score']}]{paper.title}"
         text += f"- [PDF Link]({paper.pdf_url})\n\n"
         text += f"## Subfields\n {review['subfield']}\n"
         text += f"## Reason for Interest\n\n{review['reason']}\n"
-        text += f"## Abstract: \n{"\n".join(paper.abstract.strip().split("\n")[1:])}\n ```\n"
+        text += f"## Abstract: \n{"\n".join(paper.abstract.strip().split("\n")[1:])}\n"
         fn = f"_posts/{post_date.strftime('%Y-%m-%d')}-[{review['score']}]{paper.title}.md"
 
         with open(fn, "w", encoding="utf-8") as f:
