@@ -71,8 +71,10 @@ class ArxivPaper(BaseModel):
     review: object = None
 
 def upwrap_md_json(text):
-    if text.startswith("```json") and text.endswith("```"):
-        text = text[len("```json"):-3].strip()
+    if text.startswith("```json"):
+        text = text[len("```json"):].strip()
+    if text.endswith("```"):
+        text = text[:-3].strip()
     return text
 
 db = "./arxiv_cache.db"
@@ -90,7 +92,14 @@ for idx, paper in enumerate(cache.all()):
         post_date = base_date + timedelta(days=idx)
         if paper.review is None:
             continue
-        review = json.loads(upwrap_md_json(paper.review))
+        # print(paper.review)
+        json_str = upwrap_md_json(paper.review)
+        # print(json_str)
+        try:
+            review = json.loads(json_str)
+        except json.JSONDecodeError:
+            print(f"Error decoding JSON for paper: {paper.title}")
+            continue
         front_matter = textwrap.dedent(f"""---
 layout: default
 title: "[{review['score']}]{paper.title}"
