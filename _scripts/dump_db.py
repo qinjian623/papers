@@ -70,6 +70,7 @@ class ArxivPaper(BaseModel):
     is_interesting_2nd_pass: object = None
     review: object = None
 
+
 def upwrap_md_json(text):
     if text.startswith("```json"):
         text = text[len("```json"):].strip()
@@ -77,9 +78,9 @@ def upwrap_md_json(text):
         text = text[:-3].strip()
     return text
 
+
 db = "./arxiv_cache.db"
 cache = TinyDBCache(db, model=ArxivPaper, id_field="abs_url")
-
 
 
 if not os.path.exists("_posts"):
@@ -92,13 +93,17 @@ for idx, paper in enumerate(cache.all()):
         post_date = base_date + timedelta(days=idx)
         if paper.review is None:
             continue
-        # print(paper.review)
+        print(paper.review)
+
         json_str = upwrap_md_json(paper.review)
         # print(json_str)
         try:
             review = json.loads(json_str)
         except json.JSONDecodeError:
             print(f"Error decoding JSON for paper: {paper.title}")
+            # reset to None
+            review = None
+            cache.update(paper.abs_url, review=None)
             continue
         front_matter = textwrap.dedent(f"""---
 layout: default
@@ -122,6 +127,3 @@ title: "[{review['score']}]{paper.title}"
         with open(fn, "w", encoding="utf-8") as f:
             f.write(text)
         print(paper.title, fn)
-
-
-
