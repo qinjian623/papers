@@ -70,14 +70,23 @@ class ArxivPaper(BaseModel):
     is_interesting_2nd_pass: object = None
     review: object = None
 
+import re
 
-def upwrap_md_json(text):
-    if text.startswith("```json"):
-        text = text[len("```json"):].strip()
-    if text.endswith("```"):
-        text = text[:-3].strip()
-    return text
+pattern = re.compile(
+    r"```json\s*(.*?)```",
+    re.DOTALL | re.IGNORECASE
+)
 
+
+def upwrap_md_json(text: str) -> str:
+    # regex find the ```json ... ``` block and extract the content
+    regex_str = r"```json(.*?)```"
+
+    json_blocks = re.findall(regex_str, text, re.DOTALL | re.IGNORECASE)
+    if json_blocks:
+        return json_blocks[0].strip()
+    else:
+        return "error"
 
 db = "./arxiv_cache.db"
 cache = TinyDBCache(db, model=ArxivPaper, id_field="abs_url")
