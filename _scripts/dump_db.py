@@ -78,6 +78,32 @@ pattern = re.compile(
 )
 
 
+def extract_json(text: str) -> dict:
+    """
+    从包含非 JSON 内容的文本中，稳健提取 JSON 对象
+    """
+    start = text.find('{')
+    if start == -1:
+        raise ValueError("No JSON object found")
+
+    brace_count = 0
+    end = None
+
+    for i in range(start, len(text)):
+        if text[i] == '{':
+            brace_count += 1
+        elif text[i] == '}':
+            brace_count -= 1
+            if brace_count == 0:
+                end = i + 1
+                break
+
+    if end is None:
+        raise ValueError("Incomplete JSON object")
+
+    json_str = text[start:end]
+    return json.loads(json_str)
+
 def upwrap_md_json(text: str) -> str:
     # regex find the ```json ... ``` block and extract the content
     regex_str = r"```json(.*?)```"
@@ -86,7 +112,12 @@ def upwrap_md_json(text: str) -> str:
     if json_blocks:
         return json_blocks[0].strip()
     else:
-        return "error"
+        try:
+            extract_json(text)
+        except ValueError:
+            pass
+        finally:
+            return "error"
 
 db = "./arxiv_cache.db"
 cache = TinyDBCache(db, model=ArxivPaper, id_field="abs_url")
@@ -102,14 +133,14 @@ for idx, paper in enumerate(cache.all()):
         post_date = base_date + timedelta(days=idx)
         if paper.review is None:
             continue
-        print(paper.review)
-
+        # print(paper.review)
         json_str = upwrap_md_json(paper.review)
-        # print(json_str)
         try:
             review = json.loads(json_str)
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
             print(f"Error decoding JSON for paper: {paper.title}")
+            print(paper.review)
+            # exit()
             # reset to None
             review = None
             cache.update(paper.abs_url, review=None)
@@ -131,7 +162,8 @@ title: "[{review['score']}]{paper.title}"
         text += f"## Subfields\n {review['subfield']}\n"
         text += f"## Reason for Interest\n\n{review['reason']}\n"
         text += f"## Abstract: \n{"\n".join(paper.abstract.strip().split("\n")[1:])}\n"
-        fn = f"_posts/{post_date.strftime('%Y-%m-%d')}-[{review['score']}]{paper.title}.md"
+
+        fn = f"_posts/{post_date.strftime('%Y-%m-%d')}-[{review['score']}]{paper.title.replace("/", "-")}.md"
 
         with open(fn, "w", encoding="utf-8") as f:
             f.write(text)
