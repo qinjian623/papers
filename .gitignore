@@ -1,5 +1,5 @@
 *.mp4
 *.txt
 *.mp3
-_posts/
+# _posts/
 .idea/
