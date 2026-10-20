@@ -1,0 +1,34 @@
+\section{Related Work}
+
+Large nearest-neighbor systems usually get faster by changing candidate
+generation, compression, or the index. Inverted files and product quantization
+use coarse partitions and compressed distances \citep{sivic2003video,jegou2011pq}.
+Graph indexes such as HNSW and NSG change the traversal path
+\citep{malkov2020hnsw,fu2019nsg}. Surveys group ANN systems into graph,
+quantization, partitioning, and hashing methods \citep{aumuller2020ann}.
+Monte-Carlo TopK is complementary to these methods: it keeps score computation
+unchanged and changes only the final selection step.
+
+FAISS is the closest system baseline. Its GPU design showed that $K$-selection
+can take a large share of runtime once distance computation is fast
+\citep{johnson2019billion}. FAISS provides GPU and CPU search tools
+\citep{douze2024faiss,faiss2026software}. This paper compares with FAISS
+exact flat-search baselines and does not claim to replace indexing.
+
+Top-$K$ selection has its own literature. Classic exact order-statistic
+algorithms define the baseline problem \citep{floyd1975select}. GPU-specific
+work includes randomized direct selection \citep{monroe2011randomized}, radix
+and bucket selection \citep{alabi2012fast}, $k$-NN-motivated selection
+structures \citep{tang2015selection}, bitonic top-$K$ processing
+\citep{shanbhag2018topk}, SampleSelect-style selection through sampling and
+bucket counting \citep{ribizel2019approximate,ribizel2020parallel}, and
+delegate-based GPU top-$K$ filtering \citep{gaihre2021drtopk}. Monte-Carlo TopK
+also uses sampling and filtering, but its scope is narrower: vector-search score
+rows, returned $K$-th scores, buffer caps, fallback counts, and FAISS
+comparisons. The main exact GPU comparison is FAISS \texttt{runBlockSelect}.
+
+Information retrieval and database systems also use thresholds
+\citep{fagin2003optimal,broder2003wand,chronis2020external}. Those methods rely
+on score bounds, sorted access, or external-sort state. In flat dense-vector
+search, an unsampled score is unknown until its distance is computed. Monte-Carlo
+TopK still computes the full score row in flat search.

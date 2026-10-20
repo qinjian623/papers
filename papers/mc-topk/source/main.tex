@@ -1,0 +1,41 @@
+\pdfoutput=1
+\documentclass[11pt]{article}
+
+\usepackage{arxiv}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[section]{placeins}
+\usepackage{microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+
+\title{Monte-Carlo TopK: Fast Top-$K$ Selection for Vector Search Scores}
+\renewcommand{\shorttitle}{Monte-Carlo TopK}
+\author{\href{mailto:qinjian623@gmail.com}{Jian Qin}}
+\date{June 2026}
+
+\begin{document}
+\raggedbottom
+\maketitle
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\keywords{vector search \and nearest-neighbor search \and top-$K$ selection \and GPU search \and FAISS}
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/limitations}
+\input{sections/conclusion}
+\input{sections/code_availability}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

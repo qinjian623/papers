@@ -1,0 +1,45 @@
+\section{Introduction}
+
+Nearest-neighbor search returns the vectors with the smallest distances or the
+largest similarities to a query. In flat search, the system computes $N$ scores
+for each query and then selects the best $K$ entries. FAISS showed that this
+$K$-selection step can be a substantial part of the runtime after the distance
+kernel is optimized \citep{johnson2019billion,douze2024faiss}.
+
+This paper studies a narrow but common setting: after a flat-search score row is
+computed, the remaining task is to select its top-$K$ entries. Monte-Carlo TopK
+is a simple selector for this setting. It samples a small set of scores, uses a
+sampled order statistic as a threshold, scans the full score row once, and runs
+exact top-$K$ on the candidates below the threshold. The method does not reduce
+the full distance computation, change the index, or change the vector representation;
+Section~\ref{sec:method} defines this selector and its exact-mode checks. It is
+useful when exact selection is expensive relative to the rest of the pipeline.
+
+The main practical issue is the threshold. If it keeps fewer than $K$
+candidates, the row cannot return $K$ results. If it keeps too many candidates,
+the candidate buffer overflows. The exact mode handles both cases by falling
+back to full-row exact selection. A separate capped mode avoids overflow
+fallbacks by keeping only a bounded number of candidates, but this mode is
+approximate. The experiments therefore report speed, candidate-count tails,
+fallback counts, returned-score agreement, and identifier overlap separately.
+This separation matters because equal scores at the $K$-th boundary can make two
+valid exact selectors return different identifiers.
+
+The FAISS GPU results show that the approach can give a large selector gain in
+flat squared-L2 search. On four ANN10M datasets, Monte-Carlo TopK gives a 15.0x
+selector speedup and a 2.62--2.83x end-to-end speedup with zero fallbacks across
+five sample seeds. On SIFT1M, a no-fallback setting gives a 10.0x selector
+speedup and a 2.72x end-to-end speedup. These gains are not from reducing
+distance work; they come from reducing the cost of the final selection.
+
+The contributions are:
+
+\begin{enumerate}
+  \item A post-score top-$K$ selector that uses a sampled threshold, a candidate
+        buffer, and exact top-$K$ selection over candidates.
+  \item An exact-mode contract with explicit underflow and overflow fallbacks,
+        plus a separate approximate capped mode.
+  \item FAISS CPU and GPU experiments on SIFT1M and four ANN10M datasets,
+        including speed breakdowns, candidate tails, fallback counts, and
+        tie-aware correctness checks.
+\end{enumerate}

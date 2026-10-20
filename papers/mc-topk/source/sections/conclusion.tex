@@ -1,0 +1,13 @@
+\section{Conclusion}
+
+Monte-Carlo TopK is a post-score selector for vector search. It samples a
+threshold, filters the score row once, and runs exact top-$K$ on a smaller
+candidate set. In FAISS GPU tests, it gives a 15.0x selector speedup and a
+2.62--2.83x end-to-end speedup on four ANN10M datasets, with zero fallbacks
+across five sample seeds. The remaining ID differences are explained by
+equal-score boundary ties.
+
+The main practical limit is tuning. The threshold must keep enough candidates
+for exact top-$K$ while staying below the cap. The simple $N r/m$ rule sets the
+mean, but measured tails set the cap. The method is therefore best viewed as a
+selection primitive that can complement, rather than replace, indexed search.

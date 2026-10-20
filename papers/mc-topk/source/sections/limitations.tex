@@ -1,0 +1,28 @@
+\section{Limitations and Future Work}
+
+Monte-Carlo TopK speeds up selection; it does not replace indexing. In flat
+search, it still needs the full score row. Its end-to-end gain depends on how
+much time exact search spends in selection. A natural next step is to combine it
+with product quantization, coarse clustering, or graph search.
+
+The current implementation also pays a high cost for fallback. In SIFT1M, 18
+underflow fallback rows make the full run slower than exact top-$K$. A
+production implementation should use the same full-row selector as the exact
+baseline, or retry only the rows with too few or too many candidates.
+
+The current experiments report returned score, ID overlap, equal-score ties,
+candidate tails, and tail latency. They still do not cover all $K$ values, batch
+sizes, dimensions, data types, query shards, metrics, or indexed pipelines. The
+results are for squared-L2 flat search. Inner product and cosine search should
+be tested before making broader claims. A deployed system should choose the
+threshold rank from online candidate statistics or from a calibration pass, not
+only from a fixed table.
+
+The implementation leaves several opportunities for optimization. It uses
+separate kernels for sampled threshold selection, filtering/counting,
+candidate compaction, and candidate top-$K$. A tighter implementation could fuse
+adjacent stages, use prefix-sum compaction where it reduces atomic contention,
+overlap sample scoring with full distance computation, and choose threshold
+ranks per row or per batch. These changes could reduce overhead and fallback risk;
+they do not change the main limitation that flat search still computes the full
+score row.

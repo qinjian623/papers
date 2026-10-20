@@ -1,0 +1,11 @@
+Flat vector search computes one score per database vector and then selects the
+best $K$ scores. On modern GPU baselines, this final selection can be a large
+part of the search time. Monte-Carlo TopK reduces this cost with a simple
+post-score selector. For each query, it samples a small set of scores, chooses a
+sampled threshold, filters the full score row once, and runs exact top-$K$ only
+on the surviving candidates. In exact mode, rows with too few or too many
+candidates fall back to exact selection; an optional capped mode trades exact
+agreement for bounded work. In FAISS GPU flat-search tests on four ANN10M squared-L2 benchmarks,
+Monte-Carlo TopK gives a 15.0x selector speedup and a 2.62--2.83x end-to-end
+speedup, with zero fallbacks across five sample seeds. On SIFT1M, a no-fallback
+setting gives a 10.0x selector speedup and a 2.72x end-to-end speedup.

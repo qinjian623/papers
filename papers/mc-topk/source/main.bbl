@@ -1,0 +1,157 @@
+\begin{thebibliography}{20}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Alabi et~al.(2012)Alabi, Blanchard, Gordon, and
+  Steinbach]{alabi2012fast}
+Tolu Alabi, Jeffrey~D. Blanchard, Bradley Gordon, and Russel Steinbach.
+\newblock Fast {K}-selection algorithms for graphics processing units.
+\newblock \emph{ACM Journal of Experimental Algorithmics}, 17, 2012.
+\newblock \doi{10.1145/2133803.2345676}.
+
+\bibitem[Aum{\"u}ller et~al.(2020)Aum{\"u}ller, Bernhardsson, and
+  Faithfull]{aumuller2020ann}
+Martin Aum{\"u}ller, Erik Bernhardsson, and Alexander Faithfull.
+\newblock {ANN-Benchmarks}: A benchmarking tool for approximate nearest
+  neighbor algorithms.
+\newblock \emph{Information Systems}, 87:\penalty0 101374, 2020.
+\newblock \doi{10.1016/j.is.2019.02.006}.
+
+\bibitem[Broder et~al.(2003)Broder, Carmel, Herscovici, Soffer, and
+  Zien]{broder2003wand}
+Andrei~Z. Broder, David Carmel, Michael Herscovici, Aya Soffer, and Jason Zien.
+\newblock Efficient query evaluation using a two-level retrieval process.
+\newblock In \emph{Proceedings of the Twelfth International Conference on
+  Information and Knowledge Management}, pages 426--434, 2003.
+\newblock \doi{10.1145/956863.956944}.
+
+\bibitem[Chronis et~al.(2020)Chronis, Do, Graefe, and
+  Peters]{chronis2020external}
+Yannis Chronis, Thanh Do, Goetz Graefe, and Keith Peters.
+\newblock External merge sort for top-{K} queries.
+\newblock In \emph{Proceedings of the 2020 ACM SIGMOD International Conference
+  on Management of Data}, pages 2423--2437. ACM, 2020.
+\newblock \doi{10.1145/3318464.3389729}.
+
+\bibitem[Douze et~al.(2024)Douze, Guzhva, Deng, Johnson, Szilvasy, Mazar{\'e},
+  Lomeli, Hosseini, and J{\'e}gou]{douze2024faiss}
+Matthijs Douze, Alexandr Guzhva, Chengqi Deng, Jeff Johnson, Gergely Szilvasy,
+  Pierre-Emmanuel Mazar{\'e}, Maria Lomeli, Lucas Hosseini, and Herv{\'e}
+  J{\'e}gou.
+\newblock The {Faiss} library, 2024.
+\newblock Version 4 revised 2025-10-23.
+
+\bibitem[Fagin et~al.(2003)Fagin, Lotem, and Naor]{fagin2003optimal}
+Ronald Fagin, Amnon Lotem, and Moni Naor.
+\newblock Optimal aggregation algorithms for middleware.
+\newblock \emph{Journal of Computer and System Sciences}, 66\penalty0
+  (4):\penalty0 614--656, 2003.
+\newblock \doi{10.1016/S0022-0000(03)00026-6}.
+
+\bibitem[Floyd and Rivest(1975)]{floyd1975select}
+Robert~W. Floyd and Ronald~L. Rivest.
+\newblock Algorithm 489: {SELECT}--for finding the ith smallest of n elements.
+\newblock \emph{Communications of the ACM}, 18\penalty0 (3):\penalty0 173,
+  1975.
+\newblock \doi{10.1145/360680.360694}.
+
+\bibitem[Fu et~al.(2019)Fu, Xiang, Wang, and Cai]{fu2019nsg}
+Cong Fu, Chao Xiang, Changxu Wang, and Deng Cai.
+\newblock Fast approximate nearest neighbor search with the navigating
+  spreading-out graph.
+\newblock \emph{Proceedings of the VLDB Endowment}, 12\penalty0 (5):\penalty0
+  461--474, 2019.
+\newblock \doi{10.14778/3303753.3303754}.
+
+\bibitem[Gaihre et~al.(2021)Gaihre, Zheng, Weitze, Li, Song, Ding, Li, and
+  Liu]{gaihre2021drtopk}
+Anil Gaihre, Da~Zheng, Scott Weitze, Lingda Li, Shuaiwen~Leon Song, Caiwen
+  Ding, Xiaoye~S. Li, and Hang Liu.
+\newblock Dr. {Top-k}: Delegate-centric {Top-k} on {GPUs}.
+\newblock In \emph{Proceedings of the International Conference for High
+  Performance Computing, Networking, Storage and Analysis}. ACM, 2021.
+\newblock \doi{10.1145/3458817.3476141}.
+
+\bibitem[{IRISA TEXMEX Project}(2026)]{texmexsift}
+{IRISA TEXMEX Project}.
+\newblock {TEXMEX} {ANN\_SIFT1M} corpus.
+\newblock \url{http://corpus-texmex.irisa.fr/}, 2026.
+\newblock Accessed 2026-06-16.
+
+\bibitem[J{\'e}gou et~al.(2011)J{\'e}gou, Douze, and Schmid]{jegou2011pq}
+Herv{\'e} J{\'e}gou, Matthijs Douze, and Cordelia Schmid.
+\newblock Product quantization for nearest neighbor search.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 33\penalty0 (1):\penalty0 117--128, 2011.
+\newblock \doi{10.1109/TPAMI.2010.57}.
+
+\bibitem[Johnson et~al.(2019)Johnson, Douze, and J{\'e}gou]{johnson2019billion}
+Jeff Johnson, Matthijs Douze, and Herv{\'e} J{\'e}gou.
+\newblock Billion-scale similarity search with {GPUs}.
+\newblock \emph{IEEE Transactions on Big Data}, 7\penalty0 (3):\penalty0
+  535--547, 2019.
+\newblock \doi{10.1109/TBDATA.2019.2921572}.
+
+\bibitem[Malkov and Yashunin(2020)]{malkov2020hnsw}
+Yu.~A. Malkov and D.~A. Yashunin.
+\newblock Efficient and robust approximate nearest neighbor search using
+  hierarchical navigable small world graphs.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 42\penalty0 (4):\penalty0 824--836, 2020.
+\newblock \doi{10.1109/TPAMI.2018.2889473}.
+
+\bibitem[{Meta AI}(2026)]{faiss2026software}
+{Meta AI}.
+\newblock {Faiss}: A library for efficient similarity search and clustering of
+  dense vectors.
+\newblock \url{https://github.com/facebookresearch/faiss}, 2026.
+\newblock Release v1.14.3, commit 0ca9df4; accessed 2026-06-16.
+
+\bibitem[Monroe et~al.(2011)Monroe, Wendelberger, and
+  Michalak]{monroe2011randomized}
+Laura Monroe, Joanne Wendelberger, and Sarah Michalak.
+\newblock Randomized selection on the {GPU}.
+\newblock In \emph{Proceedings of the ACM SIGGRAPH Symposium on High
+  Performance Graphics}, pages 89--98. ACM, 2011.
+\newblock \doi{10.1145/2018323.2018338}.
+
+\bibitem[Ribizel and Anzt(2019)]{ribizel2019approximate}
+Tobias Ribizel and Hartwig Anzt.
+\newblock Approximate and exact selection on {GPUs}.
+\newblock In \emph{2019 IEEE International Parallel and Distributed Processing
+  Symposium Workshops}, pages 471--478, 2019.
+\newblock \doi{10.1109/IPDPSW.2019.00088}.
+
+\bibitem[Ribizel and Anzt(2020)]{ribizel2020parallel}
+Tobias Ribizel and Hartwig Anzt.
+\newblock Parallel selection on {GPUs}.
+\newblock \emph{Parallel Computing}, 91:\penalty0 102588, 2020.
+\newblock \doi{10.1016/j.parco.2019.102588}.
+
+\bibitem[Shanbhag et~al.(2018)Shanbhag, Pirk, and Madden]{shanbhag2018topk}
+Anil Shanbhag, Holger Pirk, and Samuel Madden.
+\newblock Efficient top-{K} query processing on massively parallel hardware.
+\newblock In \emph{Proceedings of the 2018 International Conference on
+  Management of Data}, pages 1557--1570. ACM, 2018.
+\newblock \doi{10.1145/3183713.3183735}.
+
+\bibitem[Sivic and Zisserman(2003)]{sivic2003video}
+Josef Sivic and Andrew Zisserman.
+\newblock Video {Google}: A text retrieval approach to object matching in
+  videos.
+\newblock In \emph{Proceedings of the IEEE International Conference on Computer
+  Vision}, pages 1470--1477, 2003.
+\newblock \doi{10.1109/ICCV.2003.1238663}.
+
+\bibitem[Tang et~al.(2015)Tang, Huang, Eyers, Mills, and
+  Guo]{tang2015selection}
+Xiaoxin Tang, Zhiyi Huang, David~M. Eyers, Steven Mills, and Minyi Guo.
+\newblock Efficient selection algorithm for fast {k-NN} search on {GPUs}.
+\newblock In \emph{2015 IEEE International Parallel and Distributed Processing
+  Symposium}, pages 397--406, 2015.
+\newblock \doi{10.1109/IPDPS.2015.115}.
+
+\end{thebibliography}

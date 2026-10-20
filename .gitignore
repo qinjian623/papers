@@ -1,0 +1,19 @@
+# Local configuration and editor files
+.env
+.env.*
+.idea/
+.vscode/
+.DS_Store
+__pycache__/
+
+# LaTeX build outputs; keep committed bibliography and figure PDFs
+*.aux
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+**/source/main.pdf
+**/source/arxiv-*.tar.gz
