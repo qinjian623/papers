@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monte-Carlo TopK: Fast Top-K Selection for Vector Search Scores, a preprint by Jian Qin.">
+  <meta name="citation_title" content="Monte-Carlo TopK: Fast Top-K Selection for Vector Search Scores">
+  <meta name="citation_author" content="Jian Qin">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_pdf_url" content="https://blog.qinjian.me/papers/papers/mc-topk/paper.pdf">
+  <title>Monte-Carlo TopK: Fast Top-K Selection for Vector Search Scores</title>
+  <link rel="canonical" href="https://blog.qinjian.me/papers/papers/mc-topk/">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+  <main>
+    <nav aria-label="Breadcrumb"><a href="../../">Papers</a></nav>
+    <article>
+      <h1>Monte-Carlo TopK: Fast Top-K Selection for Vector Search Scores</h1>
+      <h3>Jian Qin</h3>
+      <p class="date"><time datetime="2026-06">June 2026</time> · Preprint manuscript</p>
+      <section aria-labelledby="abstract">
+        <h2 id="abstract">Abstract</h2>
+        <p>Flat vector search computes one score per database vector and then selects the best K scores. On modern GPU baselines, this final selection can be a large part of the search time. Monte-Carlo TopK reduces this cost with a simple post-score selector. For each query, it samples a small set of scores, chooses a sampled threshold, filters the full score row once, and runs exact top-K only on the surviving candidates. In exact mode, rows with too few or too many candidates fall back to exact selection; an optional capped mode trades exact agreement for bounded work. In FAISS GPU flat-search tests on four ANN10M squared-L2 benchmarks, Monte-Carlo TopK gives a 15.0x selector speedup and a 2.62–2.83x end-to-end speedup, with zero fallbacks across five sample seeds. On SIFT1M, a no-fallback setting gives a 10.0x selector speedup and a 2.72x end-to-end speedup.</p>
+      </section>
+      <p>
+        <a href="paper.pdf">PDF</a>
+        · <a href="https://github.com/qinjian623/papers/tree/main/papers/mc-topk/source">LaTeX source</a>
+        · <a href="https://github.com/qinjian623/faiss/tree/e2ef9c7de793d208652979f1d03cc0545fdd482d">Code</a>
+      </p>
+    </article>
+  </main>
+</body>
+</html>

@@ -10,7 +10,7 @@ Include the complete manuscript abstract.
 
 ## Files and code
 
-Place the PDF at `paper.pdf` and any distributable source in `source/`. Add links after the files exist. Include verified code, arXiv, DOI, and venue links where available.
+Place the PDF at `paper.pdf` and any distributable source in `source/`. Add an `index.html` with the complete visible abstract and `citation_title`, `citation_author`, `citation_publication_date`, and an absolute `citation_pdf_url` pointing to the PDF in the same directory. Use the manuscript's actual date; do not invent a day when only the year is known. Link the paper from the root `index.html` and README. Include verified code, arXiv, DOI, and venue links where available.
 
 ## Build
 
